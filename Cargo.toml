@@ -1,0 +1,6 @@
+[package]
+name = "gsp"
+version = "0.1.0"
+authors = ["Philip Adams <pbadams@uchicago.edu>"]
+
+[dependencies]
