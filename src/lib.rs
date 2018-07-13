@@ -29,10 +29,12 @@ fn search_in_file(query : &str, file : &str)
 
     let mut contents = String::new();
     f.read_to_string(&mut contents).expect("Error: something went wrong reading the file: {}, file");
-
-    for line in contents.lines() {
+    
+    println!("Results in {}:", file);
+        
+    for (i, line) in contents.lines().enumerate() {
         if line.contains(query) {
-            println!("{}", line);
+            println!("Line #{}:  {}", i, line);
         }
     }
 }
