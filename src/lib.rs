@@ -4,7 +4,7 @@ use std::io::prelude::*;
 
 pub fn parse_args(args : &[String]) -> (&str, &[String]) {
     if args.len() < 3 {
-        println!("Error: Not enough arguments");
+        eprintln!("Error: Not enough arguments");
         process::exit(1);
     }
     (&args[1], &args[2..])
@@ -22,7 +22,7 @@ fn search_in_file(query : &str, file : &str)
     let mut f = match File::open(file) {
         Ok(fd) => fd,
         Err(_) => {
-            println!("Error: unable to open file {}", file);
+            eprintln!("Error: unable to open file {}", file);
             return;
         }
     };
