@@ -1,5 +1,6 @@
 use std::fs::File;
 use std::process;
+use std::io::prelude::*;
 
 pub fn parse_args(args : &[String]) -> (&str, &[String]) {
     if args.len() < 3 {
@@ -18,11 +19,20 @@ pub fn search(query : &str, files : &[String])
 
 fn search_in_file(query : &str, file : &str)
 {
-    let f = match File::open(file) {
+    let mut f = match File::open(file) {
         Ok(fd) => fd,
         Err(_) => {
             println!("Error: unable to open file {}", file);
             return;
         }
     };
+
+    let mut contents = String::new();
+    f.read_to_string(&mut contents).expect("Error: something went wrong reading the file: {}, file");
+
+    for line in contents.lines() {
+        if line.contains(query) {
+            println!("{}", line);
+        }
+    }
 }

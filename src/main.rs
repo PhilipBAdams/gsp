@@ -5,9 +5,9 @@ use std::env;
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    let (query, files) = parse_args(&args);
+    let (query, files) = gsp::parse_args(&args);
 
-    search(query, files);
+    gsp::search(query, files);
 }
 
 
